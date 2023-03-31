@@ -29,16 +29,19 @@ db.once('open', () => {
 
 
 //// files ////
-// static files
 app.use(express.static('public'))
-
-// json files
 const restaurantList = require('./restaurant.json')
+const Restaurant = require('./models/restaurant')
 
 
 //// routes setting ////
 app.get('/', (req, res) => {
-  res.render('index', { list: restaurantList.results })
+  Restaurant.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.log(error))
+
+  // res.render('index', { list: restaurantList.results })
 })
 
 app.get('/restaurants/:id', (req, res) => {
