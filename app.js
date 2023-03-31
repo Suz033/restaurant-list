@@ -1,22 +1,42 @@
+//// modules ////
 // express
 const express = require('express')
 const app = express()
 
 // handlebars
 const exphbs = require('express-handlebars')
-app.engine('handlebars', exphbs ({ defaultLayout: 'main'}))
-app.set('view engine', 'handlebars')
+app.engine('hbs', exphbs ({ defaultLayout: 'main', extname: 'hbs'}))
+app.set('view engine', 'hbs')
 
+// body-parser (before setting route)
+app.use(express.urlencoded({ extended: true }))
+
+// dotenv (before setting mongoose)
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+// mongoose
+const mongoose = require('mongoose')
+mongoose.connect(process.env.MONGODB_URI)
+const db = mongoose.connection
+db.on('error', () => {
+  console.log('=== mongodb error ===')
+})
+db.once('open', () => {
+  console.log('=== mongodb connected ===')
+})
+
+
+//// files ////
 // static files
 app.use(express.static('public'))
 
 // json files
 const restaurantList = require('./restaurant.json')
 
-// port
-const port = 3000
 
-// routes setting
+//// routes setting ////
 app.get('/', (req, res) => {
   res.render('index', { list: restaurantList.results })
 })
@@ -35,7 +55,9 @@ app.get('/search', (req, res) => {
   res.render('index', { keyword: keyword, list: list})
 })
 
-// start
+
+//// listen ////
+const port = 3000
 app.listen(port, () => {
-  console.log(`Express server: localhost:${port}`)
+  console.log(`App is running on http://localhost:${port}.`)
 })
