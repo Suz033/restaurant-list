@@ -95,6 +95,13 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then(restaurant => restaurant.deleteOne())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 //// listen ////
 const port = 3000
