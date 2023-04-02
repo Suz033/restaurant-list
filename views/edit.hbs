@@ -1,0 +1,63 @@
+<h1 class="mb-1 restaurant-show-title">Edit Restaurant</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-10 mx-auto">
+      <form action="/restaurants/{{ restaurants._id }}/edit" method="post">
+
+        <div class="mb-3">
+          <div class="d-flex">
+            <div class="">
+              <label for="chineseName" class="form-label">Chinese name</label>
+              <input type="text" class="form-control" id="chineseName" aria-describedby="chineseNameHelp" name="name" value="{{ restaurants.name }}">
+              <div id="chineseNameHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="ms-5">
+              <label for="englishName" class="form-label">English name</label>
+              <input type="text" class="form-control" id="englishName" aria-describedby="englishNameHelp" name="name_en" value="{{ restaurants.name_en }}">
+              <div id="englishNameHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <input type="text" class="form-control" id="category" name="category" value="{{ restaurants.category }}">
+        </div>
+        
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <input type="text" class="form-control" id="description" name="description" value="{{ restaurants.description }}">
+        </div>
+
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" name="phone" value="{{ restaurants.phone }}">
+        </div>
+
+        <div class="mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input type="text" class="form-control" id="location" aria-describedby="locationHelp" name="location"  value="{{ restaurants.location }}">
+        </div>
+
+        <div class="mb-3">
+          <label for="googleMapUrl" class="form-label">Google map url</label>
+          <input type="text" class="form-control" id="googleMapUrl" aria-describedby="googleMapUrlHelp" name="google_map" value="{{ restaurants.google_map }}">
+        </div>
+
+        <div class="mb-3">
+          <label for="imageUrl" class="form-label">Image url</label>
+          <input type="text" class="form-control" id="imageUrl" aria-describedby="imageUrlHelp" name="image" value="{{ restaurants.image }}">
+          <img class="rounded mx-auto d-block mb-4 mt-4 w-100" src="{{ restaurants.image }}" alt="{{ restaurants.name }}"
+            style="max-width: 600px;">
+        </div>
+
+        <div class="d-flex justify-content-center m-5">
+          <a href="/" class="btn btn-danger">Cancel</a>
+          <button type="submit" class="btn btn-primary ms-3">Save</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>
