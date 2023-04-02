@@ -1,59 +1,71 @@
-<h1 class="mb-1 restaurant-show-title">Edit Restaurant</h1>
+<h1 class="mb-1 restaurant-show-title">編輯餐廳資訊</h1>
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-10 mx-auto">
       <form action="/restaurants/{{ restaurants._id }}/edit" method="post">
 
         <div class="mb-3">
-          <div class="d-flex">
-            <div class="">
-              <label for="chineseName" class="form-label">Chinese name</label>
-              <input type="text" class="form-control" id="chineseName" aria-describedby="chineseNameHelp" name="name" value="{{ restaurants.name }}">
-              <div id="chineseNameHelp" class="form-text">We'll never share your email with anyone else.</div>
+          <fieldset disabled>
+            <div class="mb-3">
+              <label for="chineseName" class="form-label">餐廳編號</label>
+              <input type="text" class="form-control" id="chineseName" aria-describedby="chineseNameHelp" name="id" value="{{ restaurants._id }}">
+                <div id="idHelp" class="form-text">編號為系統自動生成，不可變更</div>
             </div>
-            <div class="ms-5">
-              <label for="englishName" class="form-label">English name</label>
-              <input type="text" class="form-control" id="englishName" aria-describedby="englishNameHelp" name="name_en" value="{{ restaurants.name_en }}">
-              <div id="englishNameHelp" class="form-text">We'll never share your email with anyone else.</div>
+
+          </fieldset>
+          <div class="d-flex">
+            <div class="flex-fill">
+              <label for="chineseName" class="form-label">餐廳中文名稱</label>
+              <input type="text" class="form-control" id="chineseName" aria-describedby="chineseNameHelp" placeholder="請輸入中文名稱" name="name" value="{{ restaurants.name }}">
+            </div>
+            <div class="ms-5 flex-fill">
+              <label for="englishName" class="form-label">餐廳英文名稱</label>
+              <input type="text" class="form-control" id="englishName" aria-describedby="englishNameHelp" placeholder="請輸入英文名稱" name="name_en" value="{{ restaurants.name_en }}">
             </div>
           </div>
         </div>
 
         <div class="mb-3">
-          <label for="category" class="form-label">Category</label>
-          <input type="text" class="form-control" id="category" name="category" value="{{ restaurants.category }}">
+          <label for="category" class="form-label">餐廳類別</label>
+          <input type="text" class="form-control" id="category" name="category" placeholder="咖啡、酒吧、美式、義式餐廳、日本料理、中東料理等等" value="{{ restaurants.category }}">
         </div>
         
         <div class="mb-3">
-          <label for="description" class="form-label">Description</label>
-          <input type="text" class="form-control" id="description" name="description" value="{{ restaurants.description }}">
+          <label for="description" class="form-label">餐廳簡介</label>
+          <textarea type="text" class="form-control" id="description" name="description" placeholder="簡述餐廳特色">{{ restaurants.description }}</textarea>
         </div>
 
         <div class="mb-3">
-          <label for="phone" class="form-label">Phone</label>
-          <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" name="phone" value="{{ restaurants.phone }}">
+          <label for="phone" class="form-label">聯絡電話</label>
+          <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="02 1234 5678" name="phone" value="{{ restaurants.phone }}">
         </div>
 
         <div class="mb-3">
-          <label for="location" class="form-label">Location</label>
-          <input type="text" class="form-control" id="location" aria-describedby="locationHelp" name="location"  value="{{ restaurants.location }}">
+          <label for="location" class="form-label">餐廳地址</label>
+          <input type="text" class="form-control" id="location" aria-describedby="locationHelp" placeholder="縣市、鄉鎮市區、路段、門牌號碼、樓層" name="location" value="{{ restaurants.location }}">
+        </div>
+
+        <div class="d-flex">
+          <div class="mb-3 flex-fill">
+            <label for="googleMapUrl" class="form-label">餐廳評分</label>
+            <input type="text" class="form-control" id="googleMapUrl" aria-describedby="googleMapUrlHelp" placeholder="請輸入 Google map 上該餐廳的評分" name="google_map" value="{{ restaurants.rating }}">
+          </div>
+          <div class="mb-3 ms-5 flex-fill">
+            <label for="googleMapUrl" class="form-label">Google map 分享連結</label>
+            <input type="text" class="form-control" id="googleMapUrl" aria-describedby="googleMapUrlHelp" placeholder="請至 Google map 搜尋該餐廳，點擊分享會產生連結，複製後貼上即可" name="google_map" value="{{ restaurants.google_map }}">
+          </div>
         </div>
 
         <div class="mb-3">
-          <label for="googleMapUrl" class="form-label">Google map url</label>
-          <input type="text" class="form-control" id="googleMapUrl" aria-describedby="googleMapUrlHelp" name="google_map" value="{{ restaurants.google_map }}">
-        </div>
-
-        <div class="mb-3">
-          <label for="imageUrl" class="form-label">Image url</label>
-          <input type="text" class="form-control" id="imageUrl" aria-describedby="imageUrlHelp" name="image" value="{{ restaurants.image }}">
+          <label for="imageUrl" class="form-label">餐廳圖片網址</label>
+          <input type="text" class="form-control" id="imageUrl" aria-describedby="imageUrlHelp" placeholder="請自行生產圖片網址後貼上" name="image" value="{{ restaurants.image }}">
           <img class="rounded mx-auto d-block mb-4 mt-4 w-100" src="{{ restaurants.image }}" alt="{{ restaurants.name }}"
             style="max-width: 600px;">
         </div>
 
         <div class="d-flex justify-content-center m-5">
-          <a href="/" class="btn btn-danger">Cancel</a>
-          <button type="submit" class="btn btn-primary ms-3">Save</button>
+          <a href="/" class="btn btn-danger">取消</a>
+          <button type="submit" class="btn btn-primary ms-3">儲存</button>
         </div>
       </form>
 

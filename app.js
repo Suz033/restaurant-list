@@ -30,7 +30,6 @@ db.once('open', () => {
 
 //// files ////
 app.use(express.static('public'))
-const restaurantList = require('./restaurant.json')
 const Restaurant = require('./models/restaurant')
 
 
@@ -58,7 +57,18 @@ app.get('/search', (req, res) => {
   const list = restaurantList.results.filter((list) => {
     return list.name.match(re) || list.category.match(re)
   })
-  res.render('index', { keyword: keyword, list: list})
+  res.render('index', { keyword, list})
+})
+
+app.get('/add', (req, res) => {
+  res.render('add')
+})
+
+app.post('/add', (req, res) => {
+  const restaurant = req.body
+  return Restaurant.create({ restaurant })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 app.get('/restaurants/:id/edit', (req, res) => {
@@ -71,26 +81,8 @@ app.get('/restaurants/:id/edit', (req, res) => {
 
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
-  const name = req.body.name
-  const name_en = req.body.name_en
-  const category = req.body.category
-  const description = req.body.description
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const google_map = req.body.google_map
-  return Restaurant.findById(id)
-    .then(restaurants => {
-      restaurants.name = name
-      restaurants.name_en = name_en
-      restaurants.category = category
-      restaurants.description = description
-      restaurants.image = image
-      restaurants.location = location
-      restaurants.phone = phone
-      restaurants.google_map = google_map
-      return restaurants.save()
-    })
+  const restaurant = req.body
+  return Restaurant.findByIdAndUpdate(id, restaurant)
     .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })

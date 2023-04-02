@@ -19,7 +19,6 @@ db.once('open', () => {
   console.log('=== mongodb connected ===')
   for (let i = 0; i < list.length; i++) {
     Restaurant.create({
-      id: list[i].id,
       name: list[i].name,
       name_en: list[i].name_en,
       category: list[i].category,
