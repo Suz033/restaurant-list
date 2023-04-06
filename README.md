@@ -7,13 +7,12 @@
 ### Prerequisites
 
 * Node.js
-* Express @4.16.4
-* Express-handlebars @3.0.0
-* Bootstrap @5.1.3
+* Express @4.17.1
+* Express-handlebars @4.0.2
+* mongoose @7.0.3
+* dotenv @16.0.3
 
 ### Installing
-
-以下使用 Terminal 操作：
 
 1. 複製專案
 
