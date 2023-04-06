@@ -66,9 +66,10 @@ app.get('/add', (req, res) => {
 
 app.post('/add', (req, res) => {
   const restaurant = req.body
-  return Restaurant.create({ restaurant })
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+  console.log(restaurant)
+  // return Restaurant.create({ restaurant })
+  //   .then(() => res.redirect('/'))
+  //   .catch(error => console.log(error))
 })
 
 app.get('/restaurants/:id/edit', (req, res) => {

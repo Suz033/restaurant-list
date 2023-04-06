@@ -11,54 +11,61 @@
               <input type="text" class="form-control" id="chineseName" aria-describedby="chineseNameHelp" name="id" value="{{ restaurants._id }}">
                 <div id="idHelp" class="form-text">編號為系統自動生成，不可變更</div>
             </div>
-
           </fieldset>
           <div class="d-flex">
             <div class="flex-fill">
               <label for="chineseName" class="form-label">餐廳中文名稱</label>
-              <input type="text" class="form-control" id="chineseName" aria-describedby="chineseNameHelp" placeholder="請輸入中文名稱" name="name" value="{{ restaurants.name }}">
+              <input type="text" class="form-control" id="chineseName" aria-describedby="chineseNameHelp" placeholder="請輸入中文名稱" name="name" value="{{ restaurants.name }}" required>
             </div>
             <div class="ms-5 flex-fill">
               <label for="englishName" class="form-label">餐廳英文名稱</label>
-              <input type="text" class="form-control" id="englishName" aria-describedby="englishNameHelp" placeholder="請輸入英文名稱" name="name_en" value="{{ restaurants.name_en }}">
+              <input type="text" class="form-control" id="englishName" aria-describedby="englishNameHelp" placeholder="請輸入英文名稱" name="name_en" value="{{ restaurants.name_en }}" required>
             </div>
           </div>
         </div>
 
         <div class="mb-3">
           <label for="category" class="form-label">餐廳類別</label>
-          <input type="text" class="form-control" id="category" name="category" placeholder="咖啡、酒吧、美式、義式餐廳、日本料理、中東料理等等" value="{{ restaurants.category }}">
+          <select class="form-select" id="category" name="category" value="{{ restaurants.category }}" required>
+            <option selected disabled>請選擇類別</option>
+            <option>義式餐廳</option>
+            <option>美式</option>
+            <option>日本料理</option>
+            <option>中東料理</option>
+            <option>酒吧</option>
+            <option>咖啡</option>
+          </select>
         </div>
         
         <div class="mb-3">
           <label for="description" class="form-label">餐廳簡介</label>
-          <textarea type="text" class="form-control" id="description" name="description" placeholder="簡述餐廳特色">{{ restaurants.description }}</textarea>
+          <textarea type="text" class="form-control" id="description" name="description" placeholder="簡述餐廳特色" required>{{ restaurants.description }}</textarea>
         </div>
 
         <div class="mb-3">
           <label for="phone" class="form-label">聯絡電話</label>
-          <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="02 1234 5678" name="phone" value="{{ restaurants.phone }}">
+          <input type="tel" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="02 1234 5678" name="phone" value="{{ restaurants.phone }}" required>
         </div>
 
         <div class="mb-3">
           <label for="location" class="form-label">餐廳地址</label>
-          <input type="text" class="form-control" id="location" aria-describedby="locationHelp" placeholder="縣市、鄉鎮市區、路段、門牌號碼、樓層" name="location" value="{{ restaurants.location }}">
+          <input type="text" class="form-control" id="location" aria-describedby="locationHelp" placeholder="縣市、鄉鎮市區、路段、門牌號碼、樓層" name="location" value="{{ restaurants.location }}" required>
         </div>
 
         <div class="d-flex">
           <div class="mb-3 flex-fill">
-            <label for="googleMapUrl" class="form-label">餐廳評分</label>
-            <input type="text" class="form-control" id="googleMapUrl" aria-describedby="googleMapUrlHelp" placeholder="請輸入 Google map 上該餐廳的評分" name="google_map" value="{{ restaurants.rating }}">
+            <label for="rating" class="form-label">餐廳評分</label>
+            <input type="number" class="form-control" id="rating" aria-describedby="googleMapUrlHelp" min="0" max="5" step="0.1" placeholder="請輸入 Google map 評分" name="rating" value="{{ restaurants.rating }}" required>
           </div>
           <div class="mb-3 ms-5 flex-fill">
             <label for="googleMapUrl" class="form-label">Google map 分享連結</label>
-            <input type="text" class="form-control" id="googleMapUrl" aria-describedby="googleMapUrlHelp" placeholder="請至 Google map 搜尋該餐廳，點擊分享會產生連結，複製後貼上即可" name="google_map" value="{{ restaurants.google_map }}">
+            <input type="url" class="form-control" id="googleMapUrl" aria-describedby="ratingHelp" placeholder="請至 Google map 搜尋該餐廳，點擊分享會產生連結，複製後貼上即可" name="google_map" value="{{ restaurants.google_map }}" required>
           </div>
         </div>
 
         <div class="mb-3">
           <label for="imageUrl" class="form-label">餐廳圖片網址</label>
-          <input type="text" class="form-control" id="imageUrl" aria-describedby="imageUrlHelp" placeholder="請自行生產圖片網址後貼上" name="image" value="{{ restaurants.image }}">
+          <input type="url" class="form-control" id="imageUrl" aria-describedby="imageUrlHelp" placeholder="請自行生產圖片網址後貼上" name="image" value="{{ restaurants.image }}" required>
           <img class="rounded mx-auto d-block mb-4 mt-4 w-100" src="{{ restaurants.image }}" alt="{{ restaurants.name }}"
             style="max-width: 600px;">
         </div>
