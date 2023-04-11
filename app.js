@@ -27,6 +27,10 @@ db.once('open', () => {
   console.log('=== mongodb connected ===')
 })
 
+// method-override
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'))
+
 
 //// files ////
 app.use(express.static('public'))

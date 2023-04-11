@@ -43,7 +43,7 @@
                   <div class="d-flex justify-content-end align-items-center mt-3">
                     <a href="/restaurants/{{{this._id}}}/edit" class="btn btn-outline-primary btn-sm ms-3">編輯</a>
                     <a href="/restaurants/{{{this._id}}}" class="btn btn-outline-primary btn-sm ms-3">詳情</a>
-                    <form action="/restaurants/{{{this._id}}}/delete" method="post">
+                    <form action="/restaurants/{{{this._id}}}?_method=DELETE" method="POST">
                       <button type="submit" class="btn btn-outline-danger btn-sm ms-3">刪除</a>
                     </form>
                   </div>
