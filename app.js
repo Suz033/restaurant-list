@@ -11,25 +11,13 @@ app.set('view engine', 'hbs')
 // body-parser (before setting route)
 app.use(express.urlencoded({ extended: true }))
 
-// dotenv (before setting mongoose)
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
-
-// mongoose
-const mongoose = require('mongoose')
-mongoose.connect(process.env.MONGODB_URI)
-const db = mongoose.connection
-db.on('error', () => {
-  console.error('=== mongodb error ===')
-})
-db.once('open', () => {
-  console.log('=== mongodb connected ===')
-})
-
 // method-override
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
+
+
+//// db ////
+require('./config/mongoose')
 
 
 //// files ////

@@ -1,22 +1,13 @@
-// dotenv (before setting mongoose)
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
-
-// module and model
-const mongoose = require('mongoose')
+// data
 const Restaurant = require('../restaurant.js')
 const restaurantList = require('../../restaurant.json')
+
+// schema
 const list = restaurantList.results
 
 // db
-mongoose.connect(process.env.MONGODB_URI)
-const db = mongoose.connection
-db.on('error', () => {
-  console.log('=== mongodb error ===')
-})
+const db = require('../../config/mongoose')
 db.once('open', () => {
-  console.log('=== mongodb connected ===')
   for (let i = 0; i < list.length; i++) {
     Restaurant.create({
       name: list[i].name,
