@@ -31,6 +31,7 @@ db.once('open', () => {
 //// files ////
 app.use(express.static('public'))
 const Restaurant = require('./models/restaurant')
+const restaurant = require('./models/restaurant')
 
 
 //// routes setting ////
@@ -52,14 +53,23 @@ app.get('/restaurants/:id', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
+  const keyword = req.query.keyword.trim()
   const re = new RegExp(keyword, 'gi')
-  const list = restaurantList.results.filter((list) => {
-    return list.name.match(re) || list.category.match(re)
-  })
-  res.render('index', { keyword, list})
-})
 
+  return Restaurant
+    .find()
+    .lean()
+    .then(restaurantData => {
+      const restaurants = restaurantData.filter(data => {
+        const { name, name_en, category, location, phone } = data
+        return name.match(re) || name_en.match(re) || category.match(re) || location.match(re) || phone.match(re)
+      })
+      res.render('index', { keyword, restaurants })
+    })
+    .catch(error => console.log(error))
+})
+  
+console.log(Restaurant.name)
 app.get('/add', (req, res) => {
   res.render('add')
 })
