@@ -7,6 +7,7 @@ const app = express()
 const exphbs = require('express-handlebars')
 app.engine('hbs', exphbs ({ defaultLayout: 'main', extname: 'hbs'}))
 app.set('view engine', 'hbs')
+const helpers = require('handlebars-helpers')()
 
 // body-parser (before setting route)
 app.use(express.urlencoded({ extended: true }))
