@@ -24,6 +24,10 @@ app.use(session({
   saveUninitialized: true
 }))
 
+// passport
+const usePassport = require('./config/passport')  // after session
+usePassport(app)  // before routes
+
 
 //// db ////
 require('./config/mongoose')

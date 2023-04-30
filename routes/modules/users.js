@@ -1,16 +1,20 @@
-// modules
+//// modules ////
 const express = require('express')
 const router = express.Router()
 const User = require('../../models/user')
+const passport = require('passport')
 
-// routers
+
+//// routers ////
 // login
 router.get('/login', (req, res) => {
   res.render('login')
 })
 
-router.post('/login', (req, res) => {
-})
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/login'
+}))
 
 // register
 router.get('/register', (req, res) => {
@@ -43,5 +47,6 @@ router.post('/register', (req, res) => {
     .catch(err => console.log(err))
 })
 
-// exports
+
+//// exports ////
 module.exports = router
