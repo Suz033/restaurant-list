@@ -37,6 +37,15 @@ require('./config/mongoose')
 app.use(express.static('public'))
 
 
+//// auth state ////
+app.use((req, res, next) => {
+  // 你可以在這裡 console.log(req.user) 等資訊來觀察
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
+
+
 //// routes setting ////
 const routes = require('./routes')
 app.use(routes)
