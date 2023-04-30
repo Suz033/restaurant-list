@@ -7,12 +7,13 @@ const restaurant = require('../../models/restaurant')
 
 // routes
 router.get('/', (req, res) => {
+  const userId = req.user._id
   restaurant
-    .find()
+    .find(userId)
     .lean()
     .sort({ _id: 'asc' })
     .then(restaurants => res.render('index', { restaurants }))
-    .catch(err => console.error(error))
+    .catch(err => console.error(err))
 })
 
 // exports
