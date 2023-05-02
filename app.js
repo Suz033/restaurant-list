@@ -32,6 +32,14 @@ app.use(methodOverride('_method'))
 usePassport(app)
 
 
+//// auth state ////
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
+
+
 //// db ////
 require('./config/mongoose')
 
