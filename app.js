@@ -5,6 +5,9 @@ const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
 
+// files
+const usePassport = require('./config/passport')
+
 // hbs
 app.engine('hbs', exphbs ({ defaultLayout: 'main', extname: 'hbs'}))
 app.set('view engine', 'hbs')
@@ -24,6 +27,9 @@ app.use(express.urlencoded({ extended: true }))
 
 // method-override
 app.use(methodOverride('_method'))
+
+// passport
+usePassport(app)
 
 
 //// db ////
