@@ -11,7 +11,6 @@
 * Express-handlebars @4.0.2
 * mongoose @7.0.3
 * dotenv @16.0.3
-* handlebars-helpers @0.10.0
 
 ### Installing
 
