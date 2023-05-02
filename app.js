@@ -16,18 +16,6 @@ app.use(express.urlencoded({ extended: true }))
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
-// session
-const session = require('express-session')
-app.use(session({
-  secret: 'secretSession',
-  resave: false,
-  saveUninitialized: true
-}))
-
-// passport
-const usePassport = require('./config/passport')  // after session
-usePassport(app)  // before routes
-
 
 //// db ////
 require('./config/mongoose')
@@ -35,15 +23,6 @@ require('./config/mongoose')
 
 //// files ////
 app.use(express.static('public'))
-
-
-//// auth state ////
-app.use((req, res, next) => {
-  // 你可以在這裡 console.log(req.user) 等資訊來觀察
-  res.locals.isAuthenticated = req.isAuthenticated()
-  res.locals.user = req.user
-  next()
-})
 
 
 //// routes setting ////

@@ -12,8 +12,7 @@ router.get('/new', (req, res) => {
 
 router.post('/', (req, res) => {
   const restaurant = req.body
-  const userId = req.user._id
-  return Restaurant.create(restaurant, userId)
+  return Restaurant.create(restaurant)
     .then(() => res.redirect('/'))
     .catch(error => console.error(error))
 })
