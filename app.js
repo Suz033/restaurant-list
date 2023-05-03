@@ -4,6 +4,7 @@ const app = express()
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
+const flash = require('connect-flash')
 
 // files
 const usePassport = require('./config/passport')
@@ -31,11 +32,16 @@ app.use(methodOverride('_method'))
 // passport
 usePassport(app)
 
+// connect-flash
+app.use(flash())
+
 
 //// auth state ////
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
