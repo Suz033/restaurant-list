@@ -4,38 +4,44 @@
 
 點進卡片可看到餐廳詳細介紹，包含聯絡電話、評分等等，點擊地圖旁圖示還可快速打開 Google Map 查看位置
 
-### Prerequisites
+## Prerequisites
 
 * Node.js
 * Express @4.17.1
 * Express-handlebars @4.0.2
-* mongoose @7.0.3
-* dotenv @16.0.3
+* Express-session @1.17.1
+* Mongoose @7.0.3
+* Dotenv @16.0.3
+* Bcryptjs @2.4.3
+* Connect-flash @0.1.1
+* Method-override @3.0.0
+* Passport @0.4.1
+* Passport-facebook @3.0.0
+* Passport-local @1.0.0
 
-### Installing
+## Installing
 
-1. 複製專案
-
-```
-git clone https://github.com/Suz033/restaurant-list.git
-```
-
-2. 進入名為 restaurant-list 的資料夾
-
-3. 安裝 express 及 handlebars
+1. 安裝套件
 
 ```
 npm install
 ```
 
-4. 安裝 Nodemon
+2. 安裝 Nodemon 至全域 (若有安裝過可省略)
 ```
 npm install -g nodemon
 ```
 
-5. 啟動！
+3. 啟動！(`ctrl+c` 可停止)
 ```
 npm run dev
+```
+
+4. 請參考 `.env.example` 格式添加 `.env` 檔案
+
+5. 可添加種子資料 (`ctrl+c` 可停止)
+```
+npm run seed
 ```
 
 ## Authors
