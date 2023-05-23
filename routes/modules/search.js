@@ -9,10 +9,12 @@ const Restaurant = require('../../models/restaurant')
 router.get('/', (req, res) => {
   const keyword = req.query.keyword.trim()
   const re = new RegExp(keyword, 'gi')
+  const userId = req.user._id
 
   return Restaurant
-    .find()
+    .find({ userId })
     .lean()
+    .sort({ _id: 'asc' })
     .then(restaurantData => {
       const restaurants = restaurantData.filter(data => {
         const { name, name_en, category, location, phone } = data
