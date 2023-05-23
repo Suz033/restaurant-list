@@ -4,21 +4,6 @@
 
 點進卡片可看到餐廳詳細介紹，包含聯絡電話、評分等等，點擊地圖旁圖示還可快速打開 Google Map 查看位置
 
-## Prerequisites
-
-* Node.js
-* Express @4.17.1
-* Express-handlebars @4.0.2
-* Express-session @1.17.1
-* Mongoose @7.0.3
-* Dotenv @16.0.3
-* Bcryptjs @2.4.3
-* Connect-flash @0.1.1
-* Method-override @3.0.0
-* Passport @0.4.1
-* Passport-facebook @3.0.0
-* Passport-local @1.0.0
-
 ## Installing
 
 1. 安裝套件
